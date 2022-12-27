@@ -12,15 +12,18 @@ function Login(props) {
   const [passWord, setPassWord] = useState("");
   const [showPass, setShowPass] = useState(true);
   const [errMessage, setErrorMessage] = useState("");
+  // ==============================================
 
   let handleLogin = async () => {
     setErrorMessage("");
     try {
       let data = await handleLoginApi(userName, passWord);
+
       if (data && data.errCode !== 0) {
         setErrorMessage(data.errMessage);
       }
       if (data && data.errCode === 0) {
+        props.userLoginSuccess(data.user);
         console.log("Login Success");
       }
     } catch (error) {
@@ -109,10 +112,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
-    // userLoginSuccess: () => dispatch(actions.userLoginSuccess(userInfo)),
+
+    // userLoginFail: () => dispatch(actions.adminLoginFail()),
+    userLoginSuccess: (userInfo) =>
+      dispatch(actions.userLoginSuccess(userInfo)),
   };
 };
 
