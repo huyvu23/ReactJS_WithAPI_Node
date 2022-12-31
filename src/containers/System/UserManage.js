@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManager.scss";
-import { getAllUsers } from "../../services/userService";
+import { getAllUsers, createNewUserService } from "../../services/userService";
 import ModalUser from "./ModalUser";
 
 function UserManage(props) {
@@ -13,6 +13,7 @@ function UserManage(props) {
     getListUsers();
   }, []);
 
+  // Call API get list
   const getListUsers = async () => {
     let response = await getAllUsers("ALL");
     if (response && response.errCode === 0) {
@@ -28,10 +29,36 @@ function UserManage(props) {
     setIsOpenModalUser(true);
   };
 
+  const createUser = async (data) => {
+    const { email, passWord, address, firstName, lastName } = data;
+    try {
+      let response = await createNewUserService({
+        email: email,
+        address: address,
+        password: passWord,
+        firstName: firstName,
+        lastName: lastName,
+      });
+
+      if (response && response.message.errCode !== 0) {
+        alert(response.message.message);
+      } else {
+        await getListUsers();
+        setIsOpenModalUser(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="users-container">
-        <ModalUser isOpen={isOpenModalUser} toggleIsModal={toggleIsModal} />
+        <ModalUser
+          isOpen={isOpenModalUser}
+          toggleIsModal={toggleIsModal}
+          createUser={createUser}
+        />
         <div className="title text-center">Manage users with Huy</div>
         {/* Button */}
         <div className="mx-1">
@@ -45,34 +72,36 @@ function UserManage(props) {
         {/* Table */}
         <div className="users-table mt-3 mx-1">
           <table id="customers">
-            <tr>
-              <th>Email</th>
-              <th>LastName</th>
-              <th>FirstName</th>
-              <th>Address</th>
-              <th>Actions</th>
-            </tr>
-            {arrUsers &&
-              arrUsers.map((user) => {
-                return (
-                  <>
-                    <tr key={user.id}>
-                      <td>{user.email}</td>
-                      <td>{user.lastName}</td>
-                      <td>{user.firstName}</td>
-                      <td>{user.address}</td>
-                      <td>
-                        <button className="btn-edit">
-                          <i className="fas fa-pencil-alt" />
-                        </button>
-                        <button className="btn-delete">
-                          <i className="fas - fa-trash" />
-                        </button>
-                      </td>
-                    </tr>
-                  </>
-                );
-              })}
+            <tbody>
+              <tr>
+                <th>Email</th>
+                <th>LastName</th>
+                <th>FirstName</th>
+                <th>Address</th>
+                <th>Actions</th>
+              </tr>
+              {arrUsers &&
+                arrUsers.map((user) => {
+                  return (
+                    <>
+                      <tr key={user.id}>
+                        <td>{user.email}</td>
+                        <td>{user.lastName}</td>
+                        <td>{user.firstName}</td>
+                        <td>{user.address}</td>
+                        <td>
+                          <button className="btn-edit">
+                            <i className="fas fa-pencil-alt" />
+                          </button>
+                          <button className="btn-delete">
+                            <i className="fas - fa-trash" />
+                          </button>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })}
+            </tbody>
           </table>
         </div>
       </div>
