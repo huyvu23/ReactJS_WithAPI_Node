@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
+import { emitter } from "../../utils/emitter";
+
 export default function ModalUser(props) {
   const { isOpen, toggleIsModal, createUser } = props;
 
@@ -8,6 +10,20 @@ export default function ModalUser(props) {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [address, setAddress] = useState();
+
+  useEffect(() => {
+    listEmitter();
+  }, []);
+
+  const listEmitter = () => {
+    emitter.on("EVENT_CLEAR_MODAL_DATA", () => {
+      setEmail("");
+      setPassWord("");
+      setFirstName("");
+      setLastName("");
+      setAddress("");
+    });
+  };
 
   const handleAddNewUser = () => {
     let model = {

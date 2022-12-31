@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManager.scss";
-import { getAllUsers, createNewUserService } from "../../services/userService";
+import {
+  getAllUsers,
+  createNewUserService,
+  deleteUserService,
+} from "../../services/userService";
 import ModalUser from "./ModalUser";
+import { emitter } from "../../utils/emitter";
 
 function UserManage(props) {
   const [arrUsers, setArrUsers] = useState([]);
@@ -29,6 +34,20 @@ function UserManage(props) {
     setIsOpenModalUser(true);
   };
 
+  const handleDeleteUser = async (id) => {
+    try {
+      let response = await deleteUserService(id);
+      if (response && response.message.errCode === 0) {
+        alert(response.message.message);
+        getListUsers();
+      } else {
+        alert(response.message.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const createUser = async (data) => {
     const { email, passWord, address, firstName, lastName } = data;
     try {
@@ -45,6 +64,7 @@ function UserManage(props) {
       } else {
         await getListUsers();
         setIsOpenModalUser(false);
+        emitter.emit("EVENT_CLEAR_MODAL_DATA");
       }
     } catch (error) {
       console.log(error);
@@ -93,7 +113,10 @@ function UserManage(props) {
                           <button className="btn-edit">
                             <i className="fas fa-pencil-alt" />
                           </button>
-                          <button className="btn-delete">
+                          <button
+                            className="btn-delete"
+                            onClick={() => handleDeleteUser(user.id)}
+                          >
                             <i className="fas - fa-trash" />
                           </button>
                         </td>
