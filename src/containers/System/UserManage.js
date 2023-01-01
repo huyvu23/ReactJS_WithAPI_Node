@@ -6,13 +6,17 @@ import {
   getAllUsers,
   createNewUserService,
   deleteUserService,
+  editUserService,
 } from "../../services/userService";
 import ModalUser from "./ModalUser";
+import ModalEditUser from "./ModalEditUser";
 import { emitter } from "../../utils/emitter";
 
 function UserManage(props) {
   const [arrUsers, setArrUsers] = useState([]);
   const [isOpenModalUser, setIsOpenModalUser] = useState(false);
+  const [isOpenModalEditUser, setIsOpenModalEditUser] = useState(false);
+  const [userEdit, setUserEdit] = useState();
 
   useEffect(() => {
     getListUsers();
@@ -30,8 +34,17 @@ function UserManage(props) {
     setIsOpenModalUser(!isOpenModalUser);
   };
 
+  const toggleIsModalEdit = () => {
+    setIsOpenModalEditUser(!isOpenModalEditUser);
+  };
+
   const handleAddNewUser = () => {
     setIsOpenModalUser(true);
+  };
+
+  const handleUpdateUser = (dataUpdate) => {
+    setUserEdit(dataUpdate);
+    setIsOpenModalEditUser(true);
   };
 
   const handleDeleteUser = async (id) => {
@@ -42,6 +55,20 @@ function UserManage(props) {
         getListUsers();
       } else {
         alert(response.message.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSaveUser = async (data) => {
+    try {
+      let response = await editUserService(data);
+      if (response && response.errCode !== 0) {
+        alert(response.message);
+      } else {
+        await getListUsers();
+        setIsOpenModalEditUser(false);
       }
     } catch (error) {
       console.log(error);
@@ -79,6 +106,12 @@ function UserManage(props) {
           toggleIsModal={toggleIsModal}
           createUser={createUser}
         />
+        <ModalEditUser
+          isOpen={isOpenModalEditUser}
+          toggleIsModal={toggleIsModalEdit}
+          userEdit={userEdit}
+          handleSaveUser={handleSaveUser}
+        />
         <div className="title text-center">Manage users with Huy</div>
         {/* Button */}
         <div className="mx-1">
@@ -110,7 +143,10 @@ function UserManage(props) {
                         <td>{user.firstName}</td>
                         <td>{user.address}</td>
                         <td>
-                          <button className="btn-edit">
+                          <button
+                            className="btn-edit"
+                            onClick={() => handleUpdateUser(user)}
+                          >
                             <i className="fas fa-pencil-alt" />
                           </button>
                           <button
