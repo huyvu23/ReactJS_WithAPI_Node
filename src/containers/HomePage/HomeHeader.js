@@ -44,6 +44,56 @@ function HomeHeader() {
           </div>
         </div>
       </div>
+      <div className="home-header-banner">
+        <div className="content-up">
+          <div className="title1">NỀN TẢNG Y TẾ</div>
+          <div className="title2">CHĂM SÓC SỨC KHOẺ TOÀN DIỆN</div>
+          <div className="search">
+            <i className="fas fa-search" />
+            <input type="text" placeholder="Tìm chuyên khoa khám bệnh" />
+          </div>
+        </div>
+        <div className="content-dow">
+          <div className="options">
+            <div className="option-child">
+              <div className="icon-child">
+                <i className="fas fa-hospital" />
+              </div>
+              <div className="text-child">Khám chuyên khoa</div>
+            </div>
+            <div className="option-child">
+              <div className="icon-child">
+                <i className="fas fa-mobile-alt" />
+              </div>
+              <div className="text-child">Khám từ xa</div>
+            </div>
+            <div className="option-child">
+              <div className="icon-child">
+                <i className="fas fa-procedures" />
+              </div>
+              <div className="text-child">Khám tổng quát</div>
+            </div>
+            <div className="option-child">
+              <div className="icon-child">
+                <i className="fas fa-microscope" />
+              </div>
+              <div className="text-child">Xét nghiệm y học</div>
+            </div>
+            <div className="option-child">
+              <div className="icon-child">
+                <i className="fas fa-user-md" />
+              </div>
+              <div className="text-child">Sức khoẻ tinh thần</div>
+            </div>
+            <div className="option-child">
+              <div className="icon-child">
+                <i className="fas fa-tooth" />
+              </div>
+              <div className="text-child">Khám nha khoa</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
