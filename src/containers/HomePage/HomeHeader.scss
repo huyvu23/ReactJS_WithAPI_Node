@@ -13,8 +13,8 @@
       .header-logo {
         background: url("../../assets/images/bookingcare-2020.svg") center
           center no-repeat;
-        height: 100%;
-        width: 100%;
+        height: 80%;
+        width: 80%;
       }
       i {
         font-size: 25px;
@@ -23,11 +23,12 @@
       }
     }
     .center-content {
-      width: 50%;
+      width: 55%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       .child-content {
+        cursor: pointer;
         .subs-title {
           font-weight: 400;
           font-size: 12px;
@@ -39,6 +40,29 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
+      .support {
+        padding-right: 50px;
+        display: flex;
+        align-items: center;
+        i {
+          font-size: 15px;
+          margin-right: 5px;
+        }
+      }
+      .language-vi {
+        cursor: pointer;
+        &.active {
+          color: orange;
+        }
+      }
+      .language-en {
+        margin: 0 10px;
+        cursor: pointer;
+        &.active {
+          color: blue;
+        }
+      }
     }
   }
 }
@@ -49,11 +73,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 15px 0;
   display: flex;
   flex-direction: column;
 
   .content-up {
+    padding-top: 15px;
+    height: 65%;
     .title1 {
       text-align: center;
       font-size: 30px;
@@ -92,6 +117,15 @@
   }
 
   .content-dow {
+    height: 35%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 1)
+    );
     .options {
       text-align: center;
       display: flex;

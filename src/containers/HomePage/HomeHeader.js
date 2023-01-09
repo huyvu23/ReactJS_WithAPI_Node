@@ -1,6 +1,8 @@
 import React from "react";
 import "./HomeHeader.scss";
-function HomeHeader() {
+import { FormattedMessage } from "react-intl";
+function HomeHeader(props) {
+  console.log(props);
   return (
     <>
       <div className="home-header-container">
@@ -12,7 +14,9 @@ function HomeHeader() {
           <div className="center-content">
             <div className="child-content">
               <div>
-                <b>Chuyên khoa</b>
+                <b>
+                  <FormattedMessage id="home-header.speciality" />
+                </b>
               </div>
               <div className="subs-title">Tìm bác sĩ theo chuyên khoa</div>
             </div>
@@ -40,10 +44,12 @@ function HomeHeader() {
               <i className="fas fa-question-circle"></i>
               Hỗ trợ
             </div>
-            <div className="flag">VN</div>
+            <div className="language-vi">VN</div>
+            <div className="language-en">EN</div>
           </div>
         </div>
       </div>
+      {/* ================================= */}
       <div className="home-header-banner">
         <div className="content-up">
           <div className="title1">NỀN TẢNG Y TẾ</div>
@@ -75,7 +81,7 @@ function HomeHeader() {
             </div>
             <div className="option-child">
               <div className="icon-child">
-                <i className="fas fa-microscope" />
+                <i className="fas fa-flask" />
               </div>
               <div className="text-child">Xét nghiệm y học</div>
             </div>
@@ -87,7 +93,7 @@ function HomeHeader() {
             </div>
             <div className="option-child">
               <div className="icon-child">
-                <i className="fas fa-tooth" />
+                <i className="fas fa-briefcase-medical" />
               </div>
               <div className="text-child">Khám nha khoa</div>
             </div>
@@ -97,5 +103,11 @@ function HomeHeader() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    language: state.app.language,
+  };
+};
 
 export default HomeHeader;

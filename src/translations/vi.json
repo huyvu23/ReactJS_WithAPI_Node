@@ -1,4 +1,7 @@
 {
+    "home-header":{
+        "speciality":"Chuyên khoa"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",
