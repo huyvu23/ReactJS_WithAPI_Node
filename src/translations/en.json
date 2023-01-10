@@ -1,6 +1,25 @@
 {
     "home-header":{
-        "speciality":"Medical speciality"
+        "specialty":"Medical specialty",
+        "searchDoctor":"Find a doctor by specialty",
+        "health-facility":"Facility",
+        "select-room":"Select Room",
+        "doctor":"Doctor",
+        "select-doctor":"Select Doctor",
+        "fee":"Fee",
+        "general-health-check":"General health check",
+        "support":"Support"
+    },
+    "banner":{
+        "medical-background":"MEDICAL BACKGROUND",
+        "comprehensive-health-care":"COMPREHENSIVE HEALTH CARE",
+        "find-a-medical-specialty":"Find a medical specialty",
+        "specialized-examination":"Specialized examination",
+        "remote-examination":"Remote examination",
+        "general-examination":"General examination",
+        "medical-test":"Medical test",
+        "mental-health":"Mental health",
+        "dental-examination":"Dental examination"
     },
     "common": {
         "add": "Add",

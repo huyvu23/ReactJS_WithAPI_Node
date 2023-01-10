@@ -15,34 +15,48 @@ function HomeHeader(props) {
             <div className="child-content">
               <div>
                 <b>
-                  <FormattedMessage id="home-header.speciality" />
+                  <FormattedMessage id="home-header.specialty" />
                 </b>
               </div>
-              <div className="subs-title">Tìm bác sĩ theo chuyên khoa</div>
+              <div className="subs-title">
+                <FormattedMessage id="home-header.searchDoctor" />
+              </div>
             </div>
             <div className="child-content">
               <div>
-                <b>Cơ sở y tế</b>
+                <b>
+                  <FormattedMessage id="home-header.health-facility" />
+                </b>
               </div>
-              <div className="subs-title">Chọn bệnh viện phòng khám</div>
+              <div className="subs-title">
+                <FormattedMessage id="home-header.select-room" />
+              </div>
             </div>
             <div className="child-content">
               <div>
-                <b>Bác sĩ</b>
+                <b>
+                  <FormattedMessage id="home-header.doctor" />
+                </b>
               </div>
-              <div className="subs-title">Chọn bác sĩ giỏi</div>
+              <div className="subs-title">
+                <FormattedMessage id="home-header.select-doctor" />
+              </div>
             </div>
             <div className="child-content">
               <div>
-                <b>Gói khám</b>
+                <b>
+                  <FormattedMessage id="home-header.fee" />
+                </b>
               </div>
-              <div className="subs-title">Khám sức khoẻ tổng quát</div>
+              <div className="subs-title">
+                <FormattedMessage id="home-header.general-health-check" />
+              </div>
             </div>
           </div>
           <div className="right-content">
             <div className="support">
-              <i className="fas fa-question-circle"></i>
-              Hỗ trợ
+              <i className="fas fa-question-circle" />
+              <FormattedMessage id="home-header.support" />
             </div>
             <div className="language-vi">VN</div>
             <div className="language-en">EN</div>
@@ -52,8 +66,12 @@ function HomeHeader(props) {
       {/* ================================= */}
       <div className="home-header-banner">
         <div className="content-up">
-          <div className="title1">NỀN TẢNG Y TẾ</div>
-          <div className="title2">CHĂM SÓC SỨC KHOẺ TOÀN DIỆN</div>
+          <div className="title1">
+            <FormattedMessage id="banner.medical-background" />
+          </div>
+          <div className="title2">
+            <FormattedMessage id="banner.comprehensive-health-care" />
+          </div>
           <div className="search">
             <i className="fas fa-search" />
             <input type="text" placeholder="Tìm chuyên khoa khám bệnh" />
@@ -65,37 +83,50 @@ function HomeHeader(props) {
               <div className="icon-child">
                 <i className="fas fa-hospital" />
               </div>
-              <div className="text-child">Khám chuyên khoa</div>
+              <div className="text-child">
+                {" "}
+                <FormattedMessage id="banner.specialized-examination" />
+              </div>
             </div>
             <div className="option-child">
               <div className="icon-child">
                 <i className="fas fa-mobile-alt" />
               </div>
-              <div className="text-child">Khám từ xa</div>
+              <div className="text-child">
+                <FormattedMessage id="banner.remote-examination" />
+              </div>
             </div>
             <div className="option-child">
               <div className="icon-child">
                 <i className="fas fa-procedures" />
               </div>
-              <div className="text-child">Khám tổng quát</div>
+              <div className="text-child">
+                <FormattedMessage id="banner.general-examination" />
+              </div>
             </div>
             <div className="option-child">
               <div className="icon-child">
                 <i className="fas fa-flask" />
               </div>
-              <div className="text-child">Xét nghiệm y học</div>
+              <div className="text-child">
+                <FormattedMessage id="banner.medical-test" />
+              </div>
             </div>
             <div className="option-child">
               <div className="icon-child">
                 <i className="fas fa-user-md" />
               </div>
-              <div className="text-child">Sức khoẻ tinh thần</div>
+              <div className="text-child">
+                <FormattedMessage id="banner.mental-health" />
+              </div>
             </div>
             <div className="option-child">
               <div className="icon-child">
                 <i className="fas fa-briefcase-medical" />
               </div>
-              <div className="text-child">Khám nha khoa</div>
+              <div className="text-child">
+                <FormattedMessage id="banner.dental-examination" />
+              </div>
             </div>
           </div>
         </div>
