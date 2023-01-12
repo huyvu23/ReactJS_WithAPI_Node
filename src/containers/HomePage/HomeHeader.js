@@ -1,8 +1,16 @@
 import React from "react";
 import "./HomeHeader.scss";
 import { FormattedMessage } from "react-intl";
+import { connect } from "react-redux";
+import { LANGUAGES } from "../../utils/";
+import { changeLanguageApp } from "../../store/actions";
 function HomeHeader(props) {
-  console.log(props);
+  const changeLanguage = (languages) => {
+    props.changeLanguageAppRedux(languages);
+  };
+
+  // DESTRUCTURING OF PROPS
+  let { language = "" } = props;
   return (
     <>
       <div className="home-header-container">
@@ -58,8 +66,20 @@ function HomeHeader(props) {
               <i className="fas fa-question-circle" />
               <FormattedMessage id="home-header.support" />
             </div>
-            <div className="language-vi">VN</div>
-            <div className="language-en">EN</div>
+            <div
+              className={
+                language === LANGUAGES.VI ? "language-vi active" : "language-vi"
+              }
+            >
+              <span onClick={() => changeLanguage(LANGUAGES.VI)}>VN</span>
+            </div>
+            <div
+              className={
+                language === LANGUAGES.EN ? "language-en active" : "language-en"
+              }
+            >
+              <span onClick={() => changeLanguage(LANGUAGES.EN)}>EN</span>
+            </div>
           </div>
         </div>
       </div>
@@ -84,7 +104,6 @@ function HomeHeader(props) {
                 <i className="fas fa-hospital" />
               </div>
               <div className="text-child">
-                {" "}
                 <FormattedMessage id="banner.specialized-examination" />
               </div>
             </div>
@@ -141,4 +160,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default HomeHeader;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
