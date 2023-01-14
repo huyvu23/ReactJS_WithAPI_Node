@@ -1,14 +1,16 @@
-import React from "react";
+import React, { memo } from "react";
 import HomeHeader from "./HomeHeader";
+import Specialty from "./Section/Specialty";
 
 function HomePage() {
   return (
     <>
       <div>
         <HomeHeader />
+        <Specialty />
       </div>
     </>
   );
 }
 
-export default HomePage;
+export default memo(HomePage);
